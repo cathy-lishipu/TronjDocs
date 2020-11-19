@@ -10,7 +10,8 @@ Welcome to Tronj's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   docs/Quickstart.md
+   mddocs/Quickstart.md
+   mddocs/Smart Contract.md
 
 
 
