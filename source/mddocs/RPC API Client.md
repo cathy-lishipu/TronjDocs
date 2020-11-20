@@ -16,9 +16,9 @@ Tron network has two types of resources: *bandwidth* and *energy*. *System contr
 
 System contract is one feature of TRON network.  
 
-A Transaction in TRON is a system contract call, the TronClient(transaction) APIs include two types: *send a transaction APIs* and *query APIs*.
+A Transaction in TRON is a system contract call, the TronClient(transaction) APIs include two types: *Send a transaction APIs* and *Query APIs*.
 
-#### send a transaction APIs
+#### Send a transaction APIs
 The routine for sending refers to [Sending Transaction](Sending Transaction.md).
 
 **# transfer(String from, String to, long amount)**
@@ -101,7 +101,7 @@ public TransactionReturn voteWitness(String owner, HashMap<String, String> witne
         return ret;
     }
 ```
-#### query APIs
+#### Query APIs
 The Tron wraps many query APIs and utility functions. You can query the chain using a instance.
 ```java
 public void getNowBlock() {
@@ -118,7 +118,7 @@ public void getNowBlock() {
 
 Get block from block number.  
 
-##### getNodeInfo()
+**# getNodeInfo()**
 
 Get current API node’ info.  
 
