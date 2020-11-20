@@ -12,7 +12,7 @@ The APIs can be simply divided into two types: *system contract* and *smart cont
 
 Tron network has two types of resources: *bandwidth* and *energy*. *System contracts* consume only bandwidth and *Smart contracts* may need both(only trigger calls).
 
-###System Contract
+### System Contract
 
 ```java
 public void freezeBalance() {
