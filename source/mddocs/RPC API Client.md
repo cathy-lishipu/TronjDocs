@@ -21,9 +21,9 @@ A Transaction in TRON is a system contract call, the TronClient(transaction) API
 #### Send a transaction APIs
 The routine for sending refers to [Sending Transaction](https://github.com/Starsakary/TronjDocs/blob/develop/source/mddocs/Sending%20Transaction.md).
 
-- transfer(String from, String to, long amount)
+**# transfer(String from, String to, long amount)**
 
-Transfer TRX. amount in SUN
+  Transfer TRX. amount in SUN
 
 ```java
 public TransactionReturn transfer(String from, String to, long amount) {
@@ -144,7 +144,7 @@ List all witnesses that current API node is connected to.
 
 ### Smart Contract
 
-There are two types of smart contract calls: constant and trigger. Refer to [Smart Contract](Smart Contract.md).
+There are two types of smart contract calls: constant and trigger. Refer to [Smart Contract](https://github.com/Starsakary/TronjDocs/blob/develop/source/mddocs/Smart%20Contract.md).
 
 ## Javadoc
 
