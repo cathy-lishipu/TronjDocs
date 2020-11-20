@@ -12,19 +12,113 @@ The APIs can be simply divided into two types: *system contract* and *smart cont
 
 Tron network has two types of resources: *bandwidth* and *energy*. *System contracts* consume only bandwidth and *Smart contracts* may need both(only trigger calls).
 
-### System Contract
+### System Contract. 
+
+System contract is one feature of TRON network.  
+
+A Transaction in TRON is a system contract call, the TronClient(transaction) APIs include two types: *send a transaction APIs* and *query APIs*.
+
+#### send a transaction
+The routine for sending refers to [Sending Transaction](Sending Transaction.md).
+
+**transfer(String from, String to, long amount)**
+Transfer TRX. amount in SUN
 
 ```java
-public void freezeBalance() {
-        System.out.println("============= freeze balance =============");
-        TronClient client = TronClient.ofShasta("3333333333333333333333333333333333333333333333333333333333333333");
+public TransactionReturn transfer(String from, String to, long amount) {
+
+        ByteString rawFrom = parseAddress(from);
+        ByteString rawTo = parseAddress(to);
+
+        TransferContract req = TransferContract.newBuilder()
+                .setOwnerAddress(rawFrom)
+                .setToAddress(rawTo)
+                .setAmount(amount)
+                .build();
+
+        TransactionExtention txnExt = blockingStub.createTransaction2(req);
+
+        Transaction signedTxn = signTransaction(txnExt);
+
+        TransactionReturn ret = blockingStub.broadcastTransaction(signedTxn);
+        
+        return ret;
+    }
+```
+**transferTrc10(String from, String to, int tokenId, long amount)**
+Transfers TRC10 Asset
+
+**freezeBalance(String from, long balance, long duration, int resourceCode)**
+Freeze balance to get energy or bandwidth, for 3 days.
+Parameters:	resourceCode – Resource type, can be "ENERGY" or "BANDWIDTH"
+
+```java
+public TransactionReturn freezeBalance(String from, long balance, long duration, int resourceCode) {
+
+        ByteString rawFrom = parseAddress(from);
+        FreezeBalanceContract freezeBalanceContract=
+                FreezeBalanceContract.newBuilder()
+                        .setOwnerAddress(rawFrom)
+                        .setFrozenBalance(balance)
+                        .setFrozenDuration(duration)
+                        .setResourceValue(resourceCode)
+                        .build();
+        
+        TransactionExtention txnExt = blockingStub.freezeBalance2(freezeBalanceContract);
+
+        Transaction signedTxn = signTransaction(txnExt);
+
+        TransactionReturn ret = blockingStub.broadcastTransaction(signedTxn);
+        
+        return ret;
+    }
+```
+**unfreezeBalance(String from, int resource)**
+Unfreeze balance to get TRX back.
+Parameters:	resource – Resource type, can be "ENERGY" or "BANDWIDTH"
+
+**voteWitness(String owner, HashMap<String, String> witness)**
+Vote for witnesses
+```java
+public TransactionReturn voteWitness(String owner, HashMap<String, String> witness) {
+        ByteString rawFrom = parseAddress(owner);
+        VoteWitnessContract voteWitnessContract = createVoteWitnessContract(rawFrom, witness);
+        TransactionExtention txnExt = blockingStub.voteWitnessAccount2(voteWitnessContract);
+
+        Transaction signedTxn = signTransaction(txnExt);
+
+        TransactionReturn ret = blockingStub.broadcastTransaction(signedTxn);
+        
+        return ret;
+    }
+```
+#### query APIs
+The Tron wraps many query APIs and utility functions. You can query the chain using a instance.
+```java
+public void getNowBlock() {
+        System.out.println("============= getNowBlock =============");
+        TronClient client = TronClient.ofNile("3333333333333333333333333333333333333333333333333333333333333333");
         try {
-            client.freezeBalance("TJRabPrwbZy45sbavfcjinPJC18kjpRTv8", 1_000_000L, 3L,1, "TVjsyZ7fYF3qLF6BQgPmTEZy1xrNNyVAAA");
+            client.getNowBlock();
         } catch (Exception e) {
             System.out.println("error: " + e);
         }
-    }
+}
 ```
+**getBlockByNum(long blockNum)**
+Get block from block number.
+**getNodeInfo()**
+Get current API node’ info.
+**listNodes()**
+List all nodes that current API node is connected to.
+**getTransactionInfoByBlockNum(long blockNum)**
+Get transactionInfo from block number.
+**getTransactionInfoById(String txID)**
+Get transactionInfo from transaction id.
+**getAccount(String address)**
+Get account info by address
+**listWitnesses()**
+List all witnesses that current API node is connected to.
 
 ### Smart Contract
 
