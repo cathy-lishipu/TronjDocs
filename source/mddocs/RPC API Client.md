@@ -19,9 +19,9 @@ System contract is one feature of TRON network.
 A Transaction in TRON is a system contract call, the TronClient(transaction) APIs include two types: *Send a transaction APIs* and *Query APIs*.
 
 #### Send a transaction APIs
-The routine for sending refers to [Sending Transaction](#Sending Transaction.md).
+The routine for sending refers to [Sending Transaction](https://github.com/Starsakary/TronjDocs/blob/develop/source/mddocs/Sending%20Transaction.md).
 
-**# transfer(String from, String to, long amount)**
+- transfer(String from, String to, long amount)
 
 Transfer TRX. amount in SUN
 
