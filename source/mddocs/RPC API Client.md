@@ -32,5 +32,5 @@ There are two types of smart contract calls: constant and trigger. Refer to [Sma
 
 ## Javadoc
 
-Refer to [contract](../javadocs/client/org/tron/tronj/client/contract/Contract.html), [Tronclient](./javadocs/client/org/tron/tronj/cilent/TronClient.html).
+Refer to [contract](./javadocs/client/org/tron/tronj/client/contract/Contract.html), [Tronclient](./javadocs/client/org/tron/tronj/cilent/TronClient.html).
 

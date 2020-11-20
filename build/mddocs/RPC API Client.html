@@ -51,6 +51,29 @@
 </div>
 <div class="section" id="rpc-apis">
 <h2>RPC APIs<a class="headerlink" href="#rpc-apis" title="Permalink to this headline">¶</a></h2>
+<p>Tronj wraps RPC APIs defined in Google Protobuf, makes the use of the interfaces  become convinient.</p>
+<p>The APIs can be simply divided into two types: <em>system contract</em> and <em>smart contract</em>.</p>
+<p>Tron network has two types of resources: <em>bandwidth</em> and <em>energy</em>. <em>System contracts</em> consume only bandwidth and <em>Smart contracts</em> may need both(only trigger calls).</p>
+<p>###System Contract</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">freezeBalance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;============= freeze balance =============&quot;</span><span class="p">);</span>
+        <span class="n">TronClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TronClient</span><span class="p">.</span><span class="na">ofShasta</span><span class="p">(</span><span class="s">&quot;3333333333333333333333333333333333333333333333333333333333333333&quot;</span><span class="p">);</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">client</span><span class="p">.</span><span class="na">freezeBalance</span><span class="p">(</span><span class="s">&quot;TJRabPrwbZy45sbavfcjinPJC18kjpRTv8&quot;</span><span class="p">,</span> <span class="mi">1_000_000L</span><span class="p">,</span> <span class="mi">3L</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;TVjsyZ7fYF3qLF6BQgPmTEZy1xrNNyVAAA&quot;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;error: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="smart-contract">
+<h3>Smart Contract<a class="headerlink" href="#smart-contract" title="Permalink to this headline">¶</a></h3>
+<p>There are two types of smart contract calls: constant and trigger. Refer to [Smart Contract](Smart Contract.md).</p>
+</div>
+</div>
+<div class="section" id="javadoc">
+<h2>Javadoc<a class="headerlink" href="#javadoc" title="Permalink to this headline">¶</a></h2>
+<p>Refer to <a class="reference external" href="./javadocs/client/org/tron/tronj/client/contract/Contract.html">contract</a>, <a class="reference external" href="./javadocs/client/org/tron/tronj/cilent/TronClient.html">Tronclient</a>.</p>
 </div>
 </div>
 
@@ -65,7 +88,11 @@
   <ul>
 <li><a class="reference internal" href="#">RPC API Client</a><ul>
 <li><a class="reference internal" href="#creating-client">Creating client</a></li>
-<li><a class="reference internal" href="#rpc-apis">RPC APIs</a></li>
+<li><a class="reference internal" href="#rpc-apis">RPC APIs</a><ul>
+<li><a class="reference internal" href="#smart-contract">Smart Contract</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#javadoc">Javadoc</a></li>
 </ul>
 </li>
 </ul>
