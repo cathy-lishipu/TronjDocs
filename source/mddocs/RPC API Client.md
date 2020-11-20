@@ -18,10 +18,10 @@ System contract is one feature of TRON network.
 
 A Transaction in TRON is a system contract call, the TronClient(transaction) APIs include two types: *send a transaction APIs* and *query APIs*.
 
-#### send a transaction
+#### send a transaction APIs
 The routine for sending refers to [Sending Transaction](Sending Transaction.md).
 
-**transfer(String from, String to, long amount)**
+**# transfer(String from, String to, long amount)**
 
 Transfer TRX. amount in SUN
 
@@ -46,11 +46,11 @@ public TransactionReturn transfer(String from, String to, long amount) {
         return ret;
     }
 ```
-**transferTrc10(String from, String to, int tokenId, long amount)** 
+**# transferTrc10(String from, String to, int tokenId, long amount)** 
 
 Transfers TRC10 Asset
 
-**freezeBalance(String from, long balance, long duration, int resourceCode)**
+**# freezeBalance(String from, long balance, long duration, int resourceCode)**
 
 Freeze balance to get energy or bandwidth, for 3 days.  
 
@@ -78,13 +78,13 @@ public TransactionReturn freezeBalance(String from, long balance, long duration,
     }
 ```
 
-**unfreezeBalance(String from, int resource)** 
+**# unfreezeBalance(String from, int resource)** 
 
 Unfreeze balance to get TRX back.  
 
 Parameters: resource – Resource type, can be "ENERGY" or "BANDWIDTH"
 
-**voteWitness(String owner, HashMap<String, String> witness)**. 
+**# voteWitness(String owner, HashMap<String, String> witness)**. 
 
 Vote for witnesses
 
@@ -114,31 +114,31 @@ public void getNowBlock() {
         }
 }
 ```
-**getBlockByNum(long blockNum)**  
+**# getBlockByNum(long blockNum)**  
 
 Get block from block number.  
 
-**getNodeInfo()** 
+##### getNodeInfo()
 
 Get current API node’ info.  
 
-**listNodes()** 
+**# listNodes()** 
 
 List all nodes that current API node is connected to.  
 
-**getTransactionInfoByBlockNum(long blockNum)**
+**# getTransactionInfoByBlockNum(long blockNum)**
 
 Get transactionInfo from block number.  
 
-**getTransactionInfoById(String txID)** 
+**# getTransactionInfoById(String txID)** 
 
 Get transactionInfo from transaction id.  
 
-**getAccount(String address)** 
+**# getAccount(String address)** 
 
 Get account info by address. 
 
-**listWitnesses()** 
+**# listWitnesses()** 
 
 List all witnesses that current API node is connected to.
 
