@@ -146,7 +146,5 @@ List all witnesses that current API node is connected to.
 
 There are two types of smart contract calls: constant and trigger. Refer to [Smart Contract](https://github.com/Starsakary/TronjDocs/blob/develop/source/mddocs/Smart%20Contract.md).
 
-## Javadoc
 
-Refer to [contract](./javadocs/client/org/tron/tronj/client/contract/Contract.html), [Tronclient](./javadocs/client/org/tron/tronj/cilent/TronClient.html).
 

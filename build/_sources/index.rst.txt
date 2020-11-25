@@ -15,8 +15,6 @@ Welcome to Tronj's documentation!
    mddocs/Smart Contract.md
    mddocs/RPC API Client.md
 
-   javadocs/*
-
 
 
 Indices and tables
