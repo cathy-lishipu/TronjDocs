@@ -32,6 +32,3 @@ In Tronj, the routine is:
 4. Call `TronClient.signTransaction()`to sign the transaction with your private key binding with the `TronClient` object.
 5. Call `TronClient.broadcastTransaction()` to broadcast the transaction and get a `TransactionReturn` for analysis.
 
-## Javadoc
-
-Refer to [TransactionBuilder](../javadocs/client/org/tron/tronj/client/Transaction/TransactionBuilder.html), [contract](./javadocs/client/org/tron/tronj/client/contract/Contract.html), [Tronclient](./javadocs/client/org/tron/tronj/cilent/TronClient.html).

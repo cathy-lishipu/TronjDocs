@@ -18,7 +18,7 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-Transfer success or failure.
+transfer success or failure.
 
 ### TransferTrc10
 
@@ -44,7 +44,7 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-Transfer success or failure.
+transfer success or failure.
 
 ### freezeBalance
 
@@ -94,7 +94,7 @@ public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, 
 
 **RETURN**  
 
-Freeze balance success or failure.
+freeze balance success or failure.
 
 ### unfreezeBalance 
 
@@ -112,7 +112,7 @@ resource type, can be "ENERGY" or "BANDWIDTH"
 
 **RETURN**  
 
-Unfreeze balance success or failure.
+unfreeze balance success or failure.
 
 ### voteWitness 
 
@@ -232,4 +232,3 @@ List all witnesses that current API node is connected to.
 **RETURN**  
 
 WitnessList object.
-

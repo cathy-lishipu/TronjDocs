@@ -93,9 +93,7 @@ public void triggerCallDemo() {
     }
 ```
 
-## Javadoc
 
-Refer to [contract](../javadocs/client/org/tron/tronj/client/contract/Contract.html), [Tronclient](./javadocs/client/org/tron/tronj/cilent/TronClient.html).
 
 
 
