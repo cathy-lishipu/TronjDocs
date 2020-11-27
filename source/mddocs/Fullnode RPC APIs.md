@@ -87,10 +87,10 @@ Get transactionInfo from block number.
 
 Get transactionInfo from transaction id.  
 
-### getAccount(String address) 
+### getAccount 
 
 Get account info by address. 
 
-### listWitnesses() 
+### listWitnesses 
 
 List all witnesses that current API node is connected to.
