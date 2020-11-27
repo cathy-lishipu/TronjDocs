@@ -18,7 +18,7 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-transfer success or failure.
+Transfer success or failure.
 
 ### TransferTrc10
 
@@ -44,7 +44,7 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-transfer success or failure.
+Transfer success or failure.
 
 ### freezeBalance
 
@@ -94,7 +94,7 @@ public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, 
 
 **RETURN**  
 
-freeze balance success or failure.
+Freeze balance success or failure.
 
 ### unfreezeBalance 
 
@@ -112,7 +112,7 @@ resource type, can be "ENERGY" or "BANDWIDTH"
 
 **RETURN**  
 
-unfreeze balance success or failure.
+Unfreeze balance success or failure.
 
 ### voteWitness 
 
