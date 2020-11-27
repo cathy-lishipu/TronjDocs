@@ -1,3 +1,11 @@
+### generateAddress  
+
+Generate random address.
+
+**RETURN**  
+
+Address in hex.
+
 ### Transfer
 
 Transfer TRX. amount in SUN. 
