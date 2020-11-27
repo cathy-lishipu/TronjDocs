@@ -9,7 +9,7 @@ Add repo setting:
 ```groovy
 repositories {
     maven {
-        url  "https://dl.bintray.com/ki5fpl/tronj"
+        url  "https://dl.bintray.com/starsakary/tronj"
     }
 }
 ```
@@ -20,8 +20,8 @@ Then add `abi` as dependency.
 dependencies {
     ....
 
-    implementation 'com.github.ki5fpl.tronj:abi:0.4.0'
-    implementation 'com.github.ki5fpl.tronj:client:0.4.0'
+    implementation 'org.tron.tronj:abi:0.4.0'
+    implementation 'org.tron.tronj:client:0.4.0'
 
     ....
 }
@@ -33,7 +33,7 @@ Use maven repo setting from Bintray.
 
 ```xml
 <dependency>
-  <groupId>com.github.ki5fpl.tronj</groupId>
+  <groupId>org.tron.tronj</groupId>
   <artifactId>abi</artifactId>
   <version>0.4.0</version>
   <type>pom</type>

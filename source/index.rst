@@ -11,6 +11,7 @@ Welcome to Tronj's documentation!
    :caption: Contents:
 
    mddocs/Quickstart.md
+   mddocs/Sending Transaction.md
    mddocs/Smart Contract.md
    mddocs/RPC API Client.md
 

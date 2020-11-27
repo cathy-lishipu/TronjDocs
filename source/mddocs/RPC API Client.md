@@ -12,25 +12,63 @@ The APIs can be simply divided into two types: *system contract* and *smart cont
 
 Tron network has two types of resources: *bandwidth* and *energy*. *System contracts* consume only bandwidth and *Smart contracts* may need both(only trigger calls).
 
-###System Contract
+### System Contract. 
+
+System contract is one feature of TRON network.  
+
+A Transaction in TRON is a system contract call, the TronClient(transaction) APIs include two types: *Send a transaction APIs* and *Query APIs*.
+
+#### Send a transaction APIs
+The routine for sending refers to [Sending Transaction](https://github.com/Starsakary/TronjDocs/blob/develop/source/mddocs/Sending%20Transaction.md).
+
+**# transfer(String from, String to, long amount)**
+
+Transfer TRX. amount in SUN
 
 ```java
-public void freezeBalance() {
-        System.out.println("============= freeze balance =============");
-        TronClient client = TronClient.ofShasta("3333333333333333333333333333333333333333333333333333333333333333");
+public TransactionReturn transfer(String from, String to, long amount) {
+
+        ByteString rawFrom = parseAddress(from);
+        ByteString rawTo = parseAddress(to);
+
+        TransferContract req = TransferContract.newBuilder()
+                .setOwnerAddress(rawFrom)
+                .setToAddress(rawTo)
+                .setAmount(amount)
+                .build();
+
+        TransactionExtention txnExt = blockingStub.createTransaction2(req);
+
+        Transaction signedTxn = signTransaction(txnExt);
+
+        TransactionReturn ret = blockingStub.broadcastTransaction(signedTxn);
+        
+        return ret;
+    }
+```
+
+#### Query APIs
+The Tron wraps many query APIs and utility functions. You can query the chain using a instance.
+
+**# getNowBlock()**
+
+Get the latest block
+  
+```java
+public void getNowBlock() {
+        System.out.println("============= getNowBlock =============");
+        TronClient client = TronClient.ofNile("3333333333333333333333333333333333333333333333333333333333333333");
         try {
-            client.freezeBalance("TJRabPrwbZy45sbavfcjinPJC18kjpRTv8", 1_000_000L, 3L,1, "TVjsyZ7fYF3qLF6BQgPmTEZy1xrNNyVAAA");
+            client.getNowBlock();
         } catch (Exception e) {
             System.out.println("error: " + e);
         }
-    }
+}
 ```
 
 ### Smart Contract
 
-There are two types of smart contract calls: constant and trigger. Refer to [Smart Contract](Smart Contract.md).
+There are two types of smart contract calls: constant and trigger. Refer to [Smart Contract](https://github.com/Starsakary/TronjDocs/blob/develop/source/mddocs/Smart%20Contract.md).
 
-## Javadoc
 
-Refer to [contract](./javadocs/client/org/tron/tronj/client/contract/Contract.html), [Tronclient](./javadocs/client/org/tron/tronj/cilent/TronClient.html).
 
