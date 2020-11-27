@@ -63,7 +63,7 @@ public TransactionReturn voteWitness(String owner, HashMap<String, String> witne
         return ret;
     }
 ```
-###getNowBlock
+### getNowBlock
 
 Query the latest block information. 
 
