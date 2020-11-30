@@ -7,13 +7,14 @@ Welcome to Tronj's documentation!
 =================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    mddocs/Quickstart.md
    mddocs/Sending Transaction.md
    mddocs/Smart Contract.md
    mddocs/RPC API Client.md
+   mddocs/Fullnode RPC APIs.md
 
 
 
