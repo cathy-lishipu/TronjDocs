@@ -141,7 +141,7 @@ Throws if the function does not match any in the smart contract.
 
 ### triggerCall
 
-Make a trigger call. Trigger calls require signature and broadcasting. Refer to [Fullnode RPC APIs](Fullnode RPC APIs.md) for the signing and broadcasting functions.
+Make a trigger call. Trigger calls require signature and broadcasting. Refer to [Fullnode RPC APIs](RPC APIs.md) for the signing and broadcasting functions.
 
 **BODY PARAMS**
 
