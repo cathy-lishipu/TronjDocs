@@ -8,7 +8,7 @@ This chapter describes the specific definitions, parameters, return values and e
 
 Sign a transactionExtention with the client binding private key.
 
-**PARAMS**
+**BODY PARAMS**
 
 *1. txnExt(TransactionExtention)*
 
@@ -22,7 +22,7 @@ A signed transaction.
 
 Sign a transaction with the client binding private key.
 
-**PARAMS**
+**BODY PARAMS**
 
 *1. txn(Transaction)*
 
@@ -36,7 +36,7 @@ A signed transaction.
 
 Sign a transaction with a private key.
 
-**PARAMS**
+**BODY PARAMS**
 
 *1. txn(Transaction)*
 
@@ -54,7 +54,7 @@ A signed transaction.
 
 Sign a transactionExtention with a private key.
 
-**PARAMS**
+**BODY PARAMS**
 
 *1. txnExt(TransactionExtention)*
 
@@ -106,7 +106,7 @@ IllegalException, if fail to transfer.
 
 Transfers TRC10 Asset  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. fromAddress(String)**  
 
@@ -136,7 +136,7 @@ IllegalException, if fail to transfer trc10.
 
 Freeze balance to get energy or bandwidth, for 3 days.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. ownerAddress(String)**  
 
@@ -190,7 +190,7 @@ IllegalException, if fail to freeze balance.
 
 Unfreeze balance to get TRX back.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. ownerAddress(String)**  
 
@@ -212,7 +212,7 @@ IllegalException, if fail to unfreeze balance.
 
 Vote for witnesses  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. ownerAddress(String)**  
 
@@ -265,7 +265,7 @@ IllegalException, if fail to get now block.
 
 Returns the Block Object corresponding to the 'Block Height' specified (number of blocks preceding it).  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. blockNum(long)**  
 
@@ -283,7 +283,7 @@ IllegalException, if the parameters are not correct.
 
 Get some latest blocks.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. num(long)**  
 
@@ -325,7 +325,7 @@ IllegalException, if fail to get node list.
 
 Get transactionInfo from block number.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. blockNum(long)**  
 
@@ -343,7 +343,7 @@ IllegalException, if the parameters are not correct.
 
 Query the transaction fee, block height by transaction id.
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. txID(String)**  
 
@@ -361,7 +361,7 @@ IllegalException, if the parameters are not correct.
 
 Get account info by address.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. address(String)**  
 
@@ -389,7 +389,7 @@ WitnessList object.
 
 Get solid account info by address.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. address(String)**  
 
@@ -419,7 +419,7 @@ IllegalException, if fail to get now block.
 
 Get transaction receipt info from a transaction id, must be in solid block.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. txID(String)**  
 
@@ -437,7 +437,7 @@ IllegalException, if the parameters are not correct.
 
 Get the rewards that the voter has not received.  
 
-**PARAMS**  
+**BODY PARAMS**  
 
 *1. address(String)**  
 
