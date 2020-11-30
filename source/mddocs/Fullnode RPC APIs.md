@@ -30,7 +30,7 @@ Transaction, including execution results.
 
 **THROWS**  
 
-IllegalNumException, if fail to transfer.
+IllegalException, if fail to transfer.
 
 ### TransferTrc10
 
@@ -60,7 +60,7 @@ Transaction, including execution results.
 
 **THROWS**  
 
-IllegalNumException, if fail to transfer trc10.
+IllegalException, if fail to transfer trc10.
 
 ### freezeBalance
 
@@ -85,7 +85,7 @@ TRX freeze duration, only be specified as 3 days.
 resource type, can be "ENERGY" or "BANDWIDTH"
 
 ```java
-public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, long frozenDuration, int resourceCode) throws IllegalNumException{
+public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, long frozenDuration, int resourceCode) throws IllegalException{
 
         ByteString rawFrom = parseAddress(ownerAddress);
         FreezeBalanceContract freezeBalanceContract=
@@ -98,7 +98,7 @@ public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, 
         TransactionExtention txnExt = blockingStub.freezeBalance2(freezeBalanceContract);
 
         if(SUCCESS != txnExt.getResult().getCode()){
-            throw new IllegalNumException(txnExt.getResult().getMessage().toStringUtf8());
+            throw new IllegalException(txnExt.getResult().getMessage().toStringUtf8());
         }
 
         Transaction signedTxn = signTransaction(txnExt);
@@ -114,7 +114,7 @@ Transaction, including execution results.
 
 **THROWS**  
 
-IllegalNumException, if fail to freeze balance.
+IllegalException, if fail to freeze balance.
 
 ### unfreezeBalance 
 
@@ -136,7 +136,7 @@ Transaction, including execution results.
 
 **THROWS**  
 
-IllegalNumException, if fail to unfreeze balance.
+IllegalException, if fail to unfreeze balance.
 
 ### voteWitness 
 
@@ -155,13 +155,13 @@ key: 'vote_address' stands for the address of the witness you want to vote, defa
 value: 'vote_count' stands for the number of votes you want to vote.
 
 ```java
-public TransactionReturn voteWitness(String ownerAddress, HashMap<String, String> votes) throws IllegalNumException{
+public TransactionReturn voteWitness(String ownerAddress, HashMap<String, String> votes) throws IllegalException{
         ByteString rawFrom = parseAddress(ownerAddress);
         VoteWitnessContract voteWitnessContract = createVoteWitnessContract(rawFrom, votes);
         TransactionExtention txnExt = blockingStub.voteWitnessAccount2(voteWitnessContract);
 
         if(SUCCESS != txnExt.getResult().getCode()){
-            throw new IllegalNumException(txnExt.getResult().getMessage().toStringUtf8());
+            throw new IllegalException(txnExt.getResult().getMessage().toStringUtf8());
         }
 
         Transaction signedTxn = signTransaction(txnExt);
@@ -177,7 +177,7 @@ Transaction, including execution results.
 
 **THROWS**  
 
-IllegalNumException, if fail to vote witness.
+IllegalException, if fail to vote witness.
 
 ### getNowBlock
 
@@ -189,7 +189,7 @@ Block object.
 
 **THROWS**  
 
-IllegalNumException, if fail to get now block.
+IllegalException, if fail to get now block.
 
 ### getBlockByNum  
 
@@ -207,7 +207,7 @@ Block object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### getBlockByLatestNum 
 
@@ -225,7 +225,7 @@ BlockListExtention object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### getNodeInfo
 
@@ -237,7 +237,7 @@ NodeInfo object.
 
 **THROWS**  
 
-IllegalNumException, if fail to get nodeInfo.
+IllegalException, if fail to get nodeInfo.
 
 ### listNodes
 
@@ -249,7 +249,7 @@ NodeList object.
 
 **THROWS**  
 
-IllegalNumException, if fail to get node list.
+IllegalException, if fail to get node list.
 
 ### getTransactionInfoByBlockNum
 
@@ -267,7 +267,7 @@ TransactionInfoList object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### getTransactionInfoById 
 
@@ -285,7 +285,7 @@ TransactionInfo object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### getAccount 
 
@@ -303,7 +303,7 @@ Account object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### listWitnesses 
 
@@ -329,7 +329,7 @@ Account object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### getNowBlockSolidity  
 
@@ -341,7 +341,7 @@ BlockExtention object.
 
 **THROWS**  
 
-IllegalNumException, if fail to get now block.
+IllegalException, if fail to get now block.
 
 ### getTransactionByIdSolidity
 
@@ -359,7 +359,7 @@ Transaction object.
 
 **THROWS**  
 
-IllegalNumException, if the parameters are not correct.
+IllegalException, if the parameters are not correct.
 
 ### getRewardSolidity  
 
