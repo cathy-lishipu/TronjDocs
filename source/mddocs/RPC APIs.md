@@ -357,7 +357,7 @@ Get transaction receipt info from a transaction id, must be in solid block.
 
 **BODY PARAMS**  
 
-*1. txID(String)**  
+*1. txID(String)** 
 
 Transaction hash, i.e. transaction id.  
 
