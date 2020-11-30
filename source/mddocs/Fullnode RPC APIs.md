@@ -1,3 +1,9 @@
+# RPC APIs  
+
+This chapter describes the specific definitions, parameters, return values and exception handling of the RPC APIs.
+
+## Fullnode RPC APIs   
+
 ### generateAddress  
 
 Generate random address.
@@ -10,7 +16,7 @@ Address in hex.
 
 Transfer TRX. amount in SUN. 
 
-**BODY PARAMS**  
+**PARAMS**  
 
 *1. fromAddress(String)**  
 
@@ -312,6 +318,8 @@ List all witnesses that current API node is connected to.
 **RETURN**  
 
 WitnessList object.  
+
+## Solidity Node APIs
 
 ### getAccountSolidity  
 
