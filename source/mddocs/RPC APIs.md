@@ -4,6 +4,70 @@ This chapter describes the specific definitions, parameters, return values and e
 
 ## Full Node APIs   
 
+### signTransaction
+
+Sign a transactionExtention with the client binding private key.
+
+**BODY PARAMS**
+
+*1. txnExt(TransactionExtention)*
+
+A TransactionExtention object.
+
+**RETURN**
+
+A signed transaction.
+
+### signTransaction
+
+Sign a transaction with the client binding private key.
+
+**BODY PARAMS**
+
+*1. txn(Transaction)*
+
+A Transaction object.
+
+**RETURN**
+
+A signed transaction.
+
+### signTransaction
+
+Sign a transaction with a private key.
+
+**BODY PARAMS**
+
+*1. txn(Transaction)*
+
+A Transaction object.
+
+*2. kp(SECP256K1.KeyPair)*
+
+The private key to sign the transaction.
+
+**RETURN**
+
+A signed transaction.
+
+### signTransaction
+
+Sign a transactionExtention with a private key.
+
+**BODY PARAMS**
+
+*1. txnExt(TransactionExtention)*
+
+A TransactionExtention object.
+
+*2. kp(SECP256K1.KeyPair)*
+
+The private key to sign the transaction.
+
+**RETURN**
+
+A signed transaction.
+
 ### generateAddress  
 
 Generate random address.
@@ -383,66 +447,3 @@ address, default hexString.
 
 NumberMessage object.
 
-### signTransaction
-
-Sign a transactionExtention with the client binding private key.
-
-**BODY PARAMS**
-
-*1. txnExt(TransactionExtention)*
-
-A TransactionExtention object.
-
-**RETURN**
-
-A signed transaction.
-
-### signTransaction
-
-Sign a transaction with the client binding private key.
-
-**BODY PARAMS**
-
-*1. txn(Transaction)*
-
-A Transaction object.
-
-**RETURN**
-
-A signed transaction.
-
-### signTransaction
-
-Sign a transaction with a private key.
-
-**BODY PARAMS**
-
-*1. txn(Transaction)*
-
-A Transaction object.
-
-*2. kp(SECP256K1.KeyPair)*
-
-The private key to sign the transaction.
-
-**RETURN**
-
-A signed transaction.
-
-### signTransaction
-
-Sign a transactionExtention with a private key.
-
-**BODY PARAMS**
-
-*1. txnExt(TransactionExtention)*
-
-A TransactionExtention object.
-
-*2. kp(SECP256K1.KeyPair)*
-
-The private key to sign the transaction.
-
-**RETURN**
-
-A signed transaction.

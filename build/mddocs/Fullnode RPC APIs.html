@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transfer &#8212; Tronj v1.0 documentation</title>
+    <title>generateAddress &#8212; Tronj v1.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -38,7 +38,7 @@
           <a href="RPC%20API%20Client.html" title="RPC API Client"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Tronj v1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Transfer</a></li> 
+        <li class="nav-item nav-item-this"><a href="">generateAddress</a></li> 
       </ul>
     </div>  
 
@@ -47,7 +47,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="transfer">
+  <div class="section" id="generateaddress">
+<h1>generateAddress<a class="headerlink" href="#generateaddress" title="Permalink to this headline">¶</a></h1>
+<p>Generate random address.</p>
+<p><strong>RETURN</strong></p>
+<p>Address in hex.</p>
+</div>
+<div class="section" id="transfer">
 <h1>Transfer<a class="headerlink" href="#transfer" title="Permalink to this headline">¶</a></h1>
 <p>Transfer TRX. amount in SUN.</p>
 <p><strong>BODY PARAMS</strong></p>
@@ -58,7 +64,9 @@
 <p><em>3. amount(int)</em>*</p>
 <p>amount is the amount of TRX to transfer in SUN.</p>
 <p><strong>RETURN</strong></p>
-<p>transfer success or failure.</p>
+<p>Transaction, including execution results.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to transfer.</p>
 </div>
 <div class="section" id="transfertrc10">
 <h1>TransferTrc10<a class="headerlink" href="#transfertrc10" title="Permalink to this headline">¶</a></h1>
@@ -73,7 +81,9 @@
 <p><em>4. amount(int)</em>*</p>
 <p>amount is the amount of TRX to transfer in SUN.</p>
 <p><strong>RETURN</strong></p>
-<p>transfer success or failure.</p>
+<p>Transaction, including execution results.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to transfer trc10.</p>
 </div>
 <div class="section" id="freezebalance">
 <h1>freezeBalance<a class="headerlink" href="#freezebalance" title="Permalink to this headline">¶</a></h1>
@@ -87,7 +97,7 @@
 <p>TRX freeze duration, only be specified as 3 days.</p>
 <p><em>4. resourceCode(int)</em>*</p>
 <p>resource type, can be “ENERGY” or “BANDWIDTH”</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">TransactionReturn</span> <span class="nf">freezeBalance</span><span class="p">(</span><span class="n">String</span> <span class="n">ownerAddress</span><span class="p">,</span> <span class="kt">long</span> <span class="n">frozenBalance</span><span class="p">,</span> <span class="kt">long</span> <span class="n">frozenDuration</span><span class="p">,</span> <span class="kt">int</span> <span class="n">resourceCode</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IllegalNumException</span><span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">TransactionReturn</span> <span class="nf">freezeBalance</span><span class="p">(</span><span class="n">String</span> <span class="n">ownerAddress</span><span class="p">,</span> <span class="kt">long</span> <span class="n">frozenBalance</span><span class="p">,</span> <span class="kt">long</span> <span class="n">frozenDuration</span><span class="p">,</span> <span class="kt">int</span> <span class="n">resourceCode</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IllegalException</span><span class="p">{</span>
 
         <span class="n">ByteString</span> <span class="n">rawFrom</span> <span class="o">=</span> <span class="n">parseAddress</span><span class="p">(</span><span class="n">ownerAddress</span><span class="p">);</span>
         <span class="n">FreezeBalanceContract</span> <span class="n">freezeBalanceContract</span><span class="o">=</span>
@@ -100,7 +110,7 @@
         <span class="n">TransactionExtention</span> <span class="n">txnExt</span> <span class="o">=</span> <span class="n">blockingStub</span><span class="p">.</span><span class="na">freezeBalance2</span><span class="p">(</span><span class="n">freezeBalanceContract</span><span class="p">);</span>
 
         <span class="k">if</span><span class="p">(</span><span class="n">SUCCESS</span> <span class="o">!=</span> <span class="n">txnExt</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getCode</span><span class="p">()){</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalNumException</span><span class="p">(</span><span class="n">txnExt</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getMessage</span><span class="p">().</span><span class="na">toStringUtf8</span><span class="p">());</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalException</span><span class="p">(</span><span class="n">txnExt</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getMessage</span><span class="p">().</span><span class="na">toStringUtf8</span><span class="p">());</span>
         <span class="p">}</span>
 
         <span class="n">Transaction</span> <span class="n">signedTxn</span> <span class="o">=</span> <span class="n">signTransaction</span><span class="p">(</span><span class="n">txnExt</span><span class="p">);</span>
@@ -111,7 +121,9 @@
 </pre></div>
 </div>
 <p><strong>RETURN</strong></p>
-<p>freeze balance success or failure.</p>
+<p>Transaction, including execution results.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to freeze balance.</p>
 </div>
 <div class="section" id="unfreezebalance">
 <h1>unfreezeBalance<a class="headerlink" href="#unfreezebalance" title="Permalink to this headline">¶</a></h1>
@@ -122,7 +134,9 @@
 <p><em>2. resourceCode(int)</em>*</p>
 <p>resource type, can be “ENERGY” or “BANDWIDTH”</p>
 <p><strong>RETURN</strong></p>
-<p>unfreeze balance success or failure.</p>
+<p>Transaction, including execution results.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to unfreeze balance.</p>
 </div>
 <div class="section" id="votewitness">
 <h1>voteWitness<a class="headerlink" href="#votewitness" title="Permalink to this headline">¶</a></h1>
@@ -133,13 +147,13 @@
 <p><em>2. votes(Map)</em>*</p>
 <p>key: ‘vote_address’ stands for the address of the witness you want to vote, default hexString.</p>
 <p>value: ‘vote_count’ stands for the number of votes you want to vote.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">TransactionReturn</span> <span class="nf">voteWitness</span><span class="p">(</span><span class="n">String</span> <span class="n">ownerAddress</span><span class="p">,</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">votes</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IllegalNumException</span><span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">TransactionReturn</span> <span class="nf">voteWitness</span><span class="p">(</span><span class="n">String</span> <span class="n">ownerAddress</span><span class="p">,</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">votes</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">IllegalException</span><span class="p">{</span>
         <span class="n">ByteString</span> <span class="n">rawFrom</span> <span class="o">=</span> <span class="n">parseAddress</span><span class="p">(</span><span class="n">ownerAddress</span><span class="p">);</span>
         <span class="n">VoteWitnessContract</span> <span class="n">voteWitnessContract</span> <span class="o">=</span> <span class="n">createVoteWitnessContract</span><span class="p">(</span><span class="n">rawFrom</span><span class="p">,</span> <span class="n">votes</span><span class="p">);</span>
         <span class="n">TransactionExtention</span> <span class="n">txnExt</span> <span class="o">=</span> <span class="n">blockingStub</span><span class="p">.</span><span class="na">voteWitnessAccount2</span><span class="p">(</span><span class="n">voteWitnessContract</span><span class="p">);</span>
 
         <span class="k">if</span><span class="p">(</span><span class="n">SUCCESS</span> <span class="o">!=</span> <span class="n">txnExt</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getCode</span><span class="p">()){</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalNumException</span><span class="p">(</span><span class="n">txnExt</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getMessage</span><span class="p">().</span><span class="na">toStringUtf8</span><span class="p">());</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalException</span><span class="p">(</span><span class="n">txnExt</span><span class="p">.</span><span class="na">getResult</span><span class="p">().</span><span class="na">getMessage</span><span class="p">().</span><span class="na">toStringUtf8</span><span class="p">());</span>
         <span class="p">}</span>
 
         <span class="n">Transaction</span> <span class="n">signedTxn</span> <span class="o">=</span> <span class="n">signTransaction</span><span class="p">(</span><span class="n">txnExt</span><span class="p">);</span>
@@ -151,13 +165,17 @@
 </pre></div>
 </div>
 <p><strong>RETURN</strong></p>
-<p>Vote for witnesses success or failure.</p>
+<p>Transaction, including execution results.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to vote witness.</p>
 </div>
 <div class="section" id="getnowblock">
 <h1>getNowBlock<a class="headerlink" href="#getnowblock" title="Permalink to this headline">¶</a></h1>
 <p>Query the latest block information.</p>
 <p><strong>RETURN</strong></p>
 <p>Block object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to get now block.</p>
 </div>
 <div class="section" id="getblockbynum">
 <h1>getBlockByNum<a class="headerlink" href="#getblockbynum" title="Permalink to this headline">¶</a></h1>
@@ -167,18 +185,35 @@
 <p>blockNum is the block height.</p>
 <p><strong>RETURN</strong></p>
 <p>Block object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
+</div>
+<div class="section" id="getblockbylatestnum">
+<h1>getBlockByLatestNum<a class="headerlink" href="#getblockbylatestnum" title="Permalink to this headline">¶</a></h1>
+<p>Get some latest blocks.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. num(long)</em>*</p>
+<p>Number of latest blocks.</p>
+<p><strong>RETURN</strong></p>
+<p>BlockListExtention object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
 </div>
 <div class="section" id="getnodeinfo">
 <h1>getNodeInfo<a class="headerlink" href="#getnodeinfo" title="Permalink to this headline">¶</a></h1>
 <p>Get current API node’ info.</p>
 <p><strong>RETURN</strong></p>
 <p>NodeInfo object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to get nodeInfo.</p>
 </div>
 <div class="section" id="listnodes">
 <h1>listNodes<a class="headerlink" href="#listnodes" title="Permalink to this headline">¶</a></h1>
 <p>List all nodes that current API node is connected to.</p>
 <p><strong>RETURN</strong></p>
 <p>NodeList object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to get node list.</p>
 </div>
 <div class="section" id="gettransactioninfobyblocknum">
 <h1>getTransactionInfoByBlockNum<a class="headerlink" href="#gettransactioninfobyblocknum" title="Permalink to this headline">¶</a></h1>
@@ -188,6 +223,8 @@
 <p>blockNum is the block height.</p>
 <p><strong>RETURN</strong></p>
 <p>TransactionInfoList object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
 </div>
 <div class="section" id="gettransactioninfobyid">
 <h1>getTransactionInfoById<a class="headerlink" href="#gettransactioninfobyid" title="Permalink to this headline">¶</a></h1>
@@ -197,18 +234,64 @@
 <p>Transaction hash, i.e. transaction id.</p>
 <p><strong>RETURN</strong></p>
 <p>TransactionInfo object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
 </div>
 <div class="section" id="getaccount">
 <h1>getAccount<a class="headerlink" href="#getaccount" title="Permalink to this headline">¶</a></h1>
 <p>Get account info by address.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. address(String)</em>*</p>
+<p>address, default hexString.</p>
 <p><strong>RETURN</strong></p>
 <p>Account object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
 </div>
 <div class="section" id="listwitnesses">
 <h1>listWitnesses<a class="headerlink" href="#listwitnesses" title="Permalink to this headline">¶</a></h1>
 <p>List all witnesses that current API node is connected to.</p>
 <p><strong>RETURN</strong></p>
 <p>WitnessList object.</p>
+</div>
+<div class="section" id="getaccountsolidity">
+<h1>getAccountSolidity<a class="headerlink" href="#getaccountsolidity" title="Permalink to this headline">¶</a></h1>
+<p>Get solid account info by address.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. address(String)</em>*</p>
+<p>address, default hexString.</p>
+<p><strong>RETURN</strong></p>
+<p>Account object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
+</div>
+<div class="section" id="getnowblocksolidity">
+<h1>getNowBlockSolidity<a class="headerlink" href="#getnowblocksolidity" title="Permalink to this headline">¶</a></h1>
+<p>Query the latest solid block information.</p>
+<p><strong>RETURN</strong></p>
+<p>BlockExtention object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if fail to get now block.</p>
+</div>
+<div class="section" id="gettransactionbyidsolidity">
+<h1>getTransactionByIdSolidity<a class="headerlink" href="#gettransactionbyidsolidity" title="Permalink to this headline">¶</a></h1>
+<p>Get transaction receipt info from a transaction id, must be in solid block.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. txID(String)</em>*</p>
+<p>Transaction hash, i.e. transaction id.</p>
+<p><strong>RETURN</strong></p>
+<p>Transaction object.</p>
+<p><strong>THROWS</strong></p>
+<p>IllegalException, if the parameters are not correct.</p>
+</div>
+<div class="section" id="getrewardsolidity">
+<h1>getRewardSolidity<a class="headerlink" href="#getrewardsolidity" title="Permalink to this headline">¶</a></h1>
+<p>Get the rewards that the voter has not received.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. address(String)</em>*</p>
+<p>address, default hexString.</p>
+<p><strong>RETURN</strong></p>
+<p>NumberMessage object.</p>
 </div>
 <div class="section" id="signtransaction">
 <h1>signTransaction<a class="headerlink" href="#signtransaction" title="Permalink to this headline">¶</a></h1>
@@ -260,19 +343,25 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Transfer</a></li>
+<li><a class="reference internal" href="#">generateAddress</a></li>
+<li><a class="reference internal" href="#transfer">Transfer</a></li>
 <li><a class="reference internal" href="#transfertrc10">TransferTrc10</a></li>
 <li><a class="reference internal" href="#freezebalance">freezeBalance</a></li>
 <li><a class="reference internal" href="#unfreezebalance">unfreezeBalance</a></li>
 <li><a class="reference internal" href="#votewitness">voteWitness</a></li>
 <li><a class="reference internal" href="#getnowblock">getNowBlock</a></li>
 <li><a class="reference internal" href="#getblockbynum">getBlockByNum</a></li>
+<li><a class="reference internal" href="#getblockbylatestnum">getBlockByLatestNum</a></li>
 <li><a class="reference internal" href="#getnodeinfo">getNodeInfo</a></li>
 <li><a class="reference internal" href="#listnodes">listNodes</a></li>
 <li><a class="reference internal" href="#gettransactioninfobyblocknum">getTransactionInfoByBlockNum</a></li>
 <li><a class="reference internal" href="#gettransactioninfobyid">getTransactionInfoById</a></li>
 <li><a class="reference internal" href="#getaccount">getAccount</a></li>
 <li><a class="reference internal" href="#listwitnesses">listWitnesses</a></li>
+<li><a class="reference internal" href="#getaccountsolidity">getAccountSolidity</a></li>
+<li><a class="reference internal" href="#getnowblocksolidity">getNowBlockSolidity</a></li>
+<li><a class="reference internal" href="#gettransactionbyidsolidity">getTransactionByIdSolidity</a></li>
+<li><a class="reference internal" href="#getrewardsolidity">getRewardSolidity</a></li>
 <li><a class="reference internal" href="#signtransaction">signTransaction</a></li>
 <li><a class="reference internal" href="#id1">signTransaction</a></li>
 <li><a class="reference internal" href="#id2">signTransaction</a></li>
@@ -319,7 +408,7 @@
           <a href="RPC%20API%20Client.html" title="RPC API Client"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Tronj v1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Transfer</a></li> 
+        <li class="nav-item nav-item-this"><a href="">generateAddress</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
