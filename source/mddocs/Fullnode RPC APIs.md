@@ -26,7 +26,11 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-transfer success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalNumException, if fail to transfer.
 
 ### TransferTrc10
 
@@ -52,7 +56,11 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-transfer success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalNumException, if fail to transfer trc10.
 
 ### freezeBalance
 
@@ -102,7 +110,11 @@ public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, 
 
 **RETURN**  
 
-freeze balance success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalNumException, if fail to freeze balance.
 
 ### unfreezeBalance 
 
@@ -120,7 +132,11 @@ resource type, can be "ENERGY" or "BANDWIDTH"
 
 **RETURN**  
 
-unfreeze balance success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalNumException, if fail to unfreeze balance.
 
 ### voteWitness 
 
@@ -157,7 +173,11 @@ public TransactionReturn voteWitness(String ownerAddress, HashMap<String, String
 ```  
 **RETURN**  
 
-Vote for witnesses success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalNumException, if fail to vote witness.
 
 ### getNowBlock
 
@@ -165,7 +185,11 @@ Query the latest block information.
 
 **RETURN**  
 
-Block object.
+Block object.  
+
+**THROWS**  
+
+IllegalNumException, if fail to get now block.
 
 ### getBlockByNum  
 
@@ -179,7 +203,29 @@ blockNum is the block height.
 
 **RETURN**  
 
-Block object.
+Block object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
+
+### getBlockByLatestNum 
+
+Get some latest blocks.  
+
+**BODY PARAMS**  
+
+*1. num(long)**  
+
+Number of latest blocks.  
+
+**RETURN**  
+
+BlockListExtention object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
 
 ### getNodeInfo
 
@@ -187,7 +233,11 @@ Get current API node’ info.
 
 **RETURN**  
 
-NodeInfo object.
+NodeInfo object.  
+
+**THROWS**  
+
+IllegalNumException, if fail to get nodeInfo.
 
 ### listNodes
 
@@ -195,7 +245,11 @@ List all nodes that current API node is connected to.
 
 **RETURN**  
 
-NodeList object.
+NodeList object.  
+
+**THROWS**  
+
+IllegalNumException, if fail to get node list.
 
 ### getTransactionInfoByBlockNum
 
@@ -209,7 +263,11 @@ blockNum is the block height.
 
 **RETURN**  
 
-TransactionInfoList object.
+TransactionInfoList object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
 
 ### getTransactionInfoById 
 
@@ -223,15 +281,29 @@ Transaction hash, i.e. transaction id.
 
 **RETURN**  
 
-TransactionInfo object.
+TransactionInfo object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
 
 ### getAccount 
 
 Get account info by address.  
 
+**BODY PARAMS**  
+
+*1. address(String)**  
+
+address, default hexString.
+
 **RETURN**  
 
-Account object.
+Account object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
 
 ### listWitnesses 
 
@@ -239,4 +311,66 @@ List all witnesses that current API node is connected to.
 
 **RETURN**  
 
-WitnessList object.
+WitnessList object.  
+
+### getAccountSolidity  
+
+Get solid account info by address.  
+
+**BODY PARAMS**  
+
+*1. address(String)**  
+
+address, default hexString.  
+
+**RETURN**  
+
+Account object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
+
+### getNowBlockSolidity  
+
+Query the latest solid block information. 
+
+**RETURN**  
+
+BlockExtention object.  
+
+**THROWS**  
+
+IllegalNumException, if fail to get now block.
+
+### getTransactionByIdSolidity
+
+Get transaction receipt info from a transaction id, must be in solid block.  
+
+**BODY PARAMS**  
+
+*1. txID(String)**  
+
+Transaction hash, i.e. transaction id.  
+
+**RETURN**  
+
+Transaction object.  
+
+**THROWS**  
+
+IllegalNumException, if the parameters are not correct.
+
+### getRewardSolidity  
+
+Get the rewards that the voter has not received.  
+
+**BODY PARAMS**  
+
+*1. address(String)**  
+
+address, default hexString.  
+
+**RETURN**  
+
+NumberMessage object.
