@@ -93,7 +93,77 @@ public void triggerCallDemo() {
     }
 ```
 
+## Smart contract APIs
 
+### getContract
+
+Get a [Contract](Contract.md) object from the address.
+
+**BODY PARAMS**
+
+*1. contractAddress(String)*
+
+The address of a smart contract.
+
+**RETURN**
+
+A Contract object.
+
+**THROW**
+
+Throws if the given contract address does not match any.
+
+### constantCall
+
+make a constant call, without broadcasting.
+
+**BODY PARAMS**  
+
+*1. ownerAddr(String)**  
+
+The caller's address.
+
+*2. contractAddr(String)**  
+
+The contract's address.  
+
+*3. function(Function)**  
+
+The exact function you are calling, you can find the example in the `triggerCallDemo`.
+
+**RETURN**  
+
+A TransactionExtention object
+
+**THROW**
+
+Throws if the function does not match any in the smart contract.
+
+### triggerCall
+
+Make a trigger call. Trigger calls require signature and broadcasting. Refer to [Fullnode RPC APIs](Fullnode RPC APIs.md) for the signing and broadcasting functions.
+
+**BODY PARAMS**
+
+*1. ownerAddr(String)**  
+
+The caller's address.
+
+*2. contractAddr(String)**  
+
+The contract's address.  
+
+*3. function(Function)**  
+
+The exact function you are calling, you can find the example in the `triggerCallDemo`.
+
+**RETURN**  
+
+A TransactionBuilder object, for easily setting memos, feelimit, Etc.
+
+**THROW**
+
+Throws if the function does not match any in the smart contract.
 
 
 
