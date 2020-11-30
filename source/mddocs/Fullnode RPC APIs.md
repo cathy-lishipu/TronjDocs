@@ -1,3 +1,11 @@
+### generateAddress  
+
+Generate random address.
+
+**RETURN**  
+
+Address in hex.
+
 ### Transfer
 
 Transfer TRX. amount in SUN. 
@@ -18,7 +26,11 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-transfer success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalException, if fail to transfer.
 
 ### TransferTrc10
 
@@ -44,7 +56,11 @@ amount is the amount of TRX to transfer in SUN.
 
 **RETURN**  
 
-transfer success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalException, if fail to transfer trc10.
 
 ### freezeBalance
 
@@ -69,7 +85,7 @@ TRX freeze duration, only be specified as 3 days.
 resource type, can be "ENERGY" or "BANDWIDTH"
 
 ```java
-public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, long frozenDuration, int resourceCode) throws IllegalNumException{
+public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, long frozenDuration, int resourceCode) throws IllegalException{
 
         ByteString rawFrom = parseAddress(ownerAddress);
         FreezeBalanceContract freezeBalanceContract=
@@ -82,7 +98,7 @@ public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, 
         TransactionExtention txnExt = blockingStub.freezeBalance2(freezeBalanceContract);
 
         if(SUCCESS != txnExt.getResult().getCode()){
-            throw new IllegalNumException(txnExt.getResult().getMessage().toStringUtf8());
+            throw new IllegalException(txnExt.getResult().getMessage().toStringUtf8());
         }
 
         Transaction signedTxn = signTransaction(txnExt);
@@ -94,7 +110,11 @@ public TransactionReturn freezeBalance(String ownerAddress, long frozenBalance, 
 
 **RETURN**  
 
-freeze balance success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalException, if fail to freeze balance.
 
 ### unfreezeBalance 
 
@@ -112,7 +132,11 @@ resource type, can be "ENERGY" or "BANDWIDTH"
 
 **RETURN**  
 
-unfreeze balance success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalException, if fail to unfreeze balance.
 
 ### voteWitness 
 
@@ -131,13 +155,13 @@ key: 'vote_address' stands for the address of the witness you want to vote, defa
 value: 'vote_count' stands for the number of votes you want to vote.
 
 ```java
-public TransactionReturn voteWitness(String ownerAddress, HashMap<String, String> votes) throws IllegalNumException{
+public TransactionReturn voteWitness(String ownerAddress, HashMap<String, String> votes) throws IllegalException{
         ByteString rawFrom = parseAddress(ownerAddress);
         VoteWitnessContract voteWitnessContract = createVoteWitnessContract(rawFrom, votes);
         TransactionExtention txnExt = blockingStub.voteWitnessAccount2(voteWitnessContract);
 
         if(SUCCESS != txnExt.getResult().getCode()){
-            throw new IllegalNumException(txnExt.getResult().getMessage().toStringUtf8());
+            throw new IllegalException(txnExt.getResult().getMessage().toStringUtf8());
         }
 
         Transaction signedTxn = signTransaction(txnExt);
@@ -149,7 +173,11 @@ public TransactionReturn voteWitness(String ownerAddress, HashMap<String, String
 ```  
 **RETURN**  
 
-Vote for witnesses success or failure.
+Transaction, including execution results.  
+
+**THROWS**  
+
+IllegalException, if fail to vote witness.
 
 ### getNowBlock
 
@@ -157,7 +185,11 @@ Query the latest block information.
 
 **RETURN**  
 
-Block object.
+Block object.  
+
+**THROWS**  
+
+IllegalException, if fail to get now block.
 
 ### getBlockByNum  
 
@@ -171,7 +203,29 @@ blockNum is the block height.
 
 **RETURN**  
 
-Block object.
+Block object.  
+
+**THROWS**  
+
+IllegalException, if the parameters are not correct.
+
+### getBlockByLatestNum 
+
+Get some latest blocks.  
+
+**BODY PARAMS**  
+
+*1. num(long)**  
+
+Number of latest blocks.  
+
+**RETURN**  
+
+BlockListExtention object.  
+
+**THROWS**  
+
+IllegalException, if the parameters are not correct.
 
 ### getNodeInfo
 
@@ -179,7 +233,11 @@ Get current API node’ info.
 
 **RETURN**  
 
-NodeInfo object.
+NodeInfo object.  
+
+**THROWS**  
+
+IllegalException, if fail to get nodeInfo.
 
 ### listNodes
 
@@ -187,7 +245,11 @@ List all nodes that current API node is connected to.
 
 **RETURN**  
 
-NodeList object.
+NodeList object.  
+
+**THROWS**  
+
+IllegalException, if fail to get node list.
 
 ### getTransactionInfoByBlockNum
 
@@ -195,13 +257,17 @@ Get transactionInfo from block number.
 
 **BODY PARAMS**  
 
-*1. blockNum(long)**     
+*1. blockNum(long)**  
 
 blockNum is the block height.  
 
 **RETURN**  
 
-TransactionInfoList object.
+TransactionInfoList object.  
+
+**THROWS**  
+
+IllegalException, if the parameters are not correct.
 
 ### getTransactionInfoById 
 
@@ -215,15 +281,29 @@ Transaction hash, i.e. transaction id.
 
 **RETURN**  
 
-TransactionInfo object.
+TransactionInfo object.  
+
+**THROWS**  
+
+IllegalException, if the parameters are not correct.
 
 ### getAccount 
 
 Get account info by address.  
 
+**BODY PARAMS**  
+
+*1. address(String)**  
+
+address, default hexString.
+
 **RETURN**  
 
-Account object.
+Account object.  
+
+**THROWS**  
+
+IllegalException, if the parameters are not correct.
 
 ### listWitnesses 
 
@@ -231,68 +311,66 @@ List all witnesses that current API node is connected to.
 
 **RETURN**  
 
-WitnessList object.
+WitnessList object.  
 
-### signTransaction
+### getAccountSolidity  
 
-Sign a transactionExtention with the client binding private key.
+Get solid account info by address.  
 
-**BODY PARAMS**
+**BODY PARAMS**  
 
-*1. txnExt(TransactionExtention)*
+*1. address(String)**  
 
-A TransactionExtention object.
+address, default hexString.  
 
-**RETURN**
+**RETURN**  
 
-A signed transaction.
+Account object.  
 
-### signTransaction
+**THROWS**  
 
-Sign a transaction with the client binding private key.
+IllegalException, if the parameters are not correct.
 
-**BODY PARAMS**
+### getNowBlockSolidity  
 
-*1. txn(Transaction)*
+Query the latest solid block information. 
 
-A Transaction object.
+**RETURN**  
 
-**RETURN**
+BlockExtention object.  
 
-A signed transaction.
+**THROWS**  
 
-### signTransaction
+IllegalException, if fail to get now block.
 
-Sign a transaction with a private key.
+### getTransactionByIdSolidity
 
-**BODY PARAMS**
+Get transaction receipt info from a transaction id, must be in solid block.  
 
-*1. txn(Transaction)*
+**BODY PARAMS**  
 
-A Transaction object.
+*1. txID(String)**  
 
-*2. kp(SECP256K1.KeyPair)*
+Transaction hash, i.e. transaction id.  
 
-The private key to sign the transaction.
+**RETURN**  
 
-**RETURN**
+Transaction object.  
 
-A signed transaction.
+**THROWS**  
 
-### signTransaction
+IllegalException, if the parameters are not correct.
 
-Sign a transactionExtention with a private key.
+### getRewardSolidity  
 
-**BODY PARAMS**
+Get the rewards that the voter has not received.  
 
-*1. txnExt(TransactionExtention)*
+**BODY PARAMS**  
 
-A TransactionExtention object.
+*1. address(String)**  
 
-*2. kp(SECP256K1.KeyPair)*
+address, default hexString.  
 
-The private key to sign the transaction.
+**RETURN**  
 
-**RETURN**
-
-A signed transaction.
+NumberMessage object.
