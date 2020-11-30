@@ -2,7 +2,7 @@
 
 This chapter describes the specific definitions, parameters, return values and exception handling of the RPC APIs.
 
-## Fullnode RPC APIs   
+## Full Node APIs   
 
 ### generateAddress  
 
