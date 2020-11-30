@@ -137,6 +137,50 @@ Contract functions: 26
 </div>
 </div>
 </div>
+<div class="section" id="smart-contract-apis">
+<h2>Smart contract APIs<a class="headerlink" href="#smart-contract-apis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getcontract">
+<h3>getContract<a class="headerlink" href="#getcontract" title="Permalink to this headline">¶</a></h3>
+<p>Get a <a class="reference internal" href="Contract.html"><span class="doc">Contract</span></a> object from the address.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. contractAddress(String)</em></p>
+<p>The address of a smart contract.</p>
+<p><strong>RETURN</strong></p>
+<p>A Contract object.</p>
+<p><strong>THROW</strong></p>
+<p>Throws if the given contract address does not match any.</p>
+</div>
+<div class="section" id="constantcall">
+<h3>constantCall<a class="headerlink" href="#constantcall" title="Permalink to this headline">¶</a></h3>
+<p>make a constant call, without broadcasting.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. ownerAddr(String)</em>*</p>
+<p>The caller’s address.</p>
+<p><em>2. contractAddr(String)</em>*</p>
+<p>The contract’s address.</p>
+<p><em>3. function(Function)</em>*</p>
+<p>The exact function you are calling, you can find the example in the <code class="docutils literal notranslate"><span class="pre">triggerCallDemo</span></code>.</p>
+<p><strong>RETURN</strong></p>
+<p>A TransactionExtention object</p>
+<p><strong>THROW</strong></p>
+<p>Throws if the function does not match any in the smart contract.</p>
+</div>
+<div class="section" id="triggercall">
+<h3>triggerCall<a class="headerlink" href="#triggercall" title="Permalink to this headline">¶</a></h3>
+<p>Make a trigger call. Trigger calls require signature and broadcasting. Refer to [Fullnode RPC APIs](Fullnode RPC APIs.md) for the signing and broadcasting functions.</p>
+<p><strong>BODY PARAMS</strong></p>
+<p><em>1. ownerAddr(String)</em>*</p>
+<p>The caller’s address.</p>
+<p><em>2. contractAddr(String)</em>*</p>
+<p>The contract’s address.</p>
+<p><em>3. function(Function)</em>*</p>
+<p>The exact function you are calling, you can find the example in the <code class="docutils literal notranslate"><span class="pre">triggerCallDemo</span></code>.</p>
+<p><strong>RETURN</strong></p>
+<p>A TransactionBuilder object, for easily setting memos, feelimit, Etc.</p>
+<p><strong>THROW</strong></p>
+<p>Throws if the function does not match any in the smart contract.</p>
+</div>
+</div>
 </div>
 
 
@@ -152,6 +196,12 @@ Contract functions: 26
 <li><a class="reference internal" href="#calling-smart-contract">Calling smart contract</a><ul>
 <li><a class="reference internal" href="#const-call">Const call</a></li>
 <li><a class="reference internal" href="#trigger-call">Trigger call</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#smart-contract-apis">Smart contract APIs</a><ul>
+<li><a class="reference internal" href="#getcontract">getContract</a></li>
+<li><a class="reference internal" href="#constantcall">constantCall</a></li>
+<li><a class="reference internal" href="#triggercall">triggerCall</a></li>
 </ul>
 </li>
 </ul>

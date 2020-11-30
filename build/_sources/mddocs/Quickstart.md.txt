@@ -54,3 +54,6 @@ Aftre binding your private key with the `TronClient` object, your are ready to b
 
 
 
+## Refer to Javadocs
+
+Tronj has javadocs for essential classes and functions, you may use `gradle javadoc` to generate Javadocs for a specific package to read more details.
