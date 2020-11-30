@@ -99,7 +99,7 @@ public void triggerCallDemo() {
 
 Get a [Contract](Contract.md) object from the address.
 
-**BODY PARAMS**
+**PARAMS**
 
 *1. contractAddress(String)*
 
@@ -117,7 +117,7 @@ Throws if the given contract address does not match any.
 
 make a constant call, without broadcasting.
 
-**BODY PARAMS**  
+**PARAMS**  
 
 *1. ownerAddr(String)**  
 
@@ -143,7 +143,7 @@ Throws if the function does not match any in the smart contract.
 
 Make a trigger call. Trigger calls require signature and broadcasting. Refer to [RPC APIs](RPC APIs.md) for the signing and broadcasting functions.
 
-**BODY PARAMS**
+**PARAMS**
 
 *1. ownerAddr(String)**  
 
