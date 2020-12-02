@@ -4,7 +4,7 @@ This chapter describes the specific definitions, parameters, return values and e
 
 ## Full Node APIs   
 
-### <mark>generateAddress<mark>  
+### generateAddress  
 
 Generate random address.
 
