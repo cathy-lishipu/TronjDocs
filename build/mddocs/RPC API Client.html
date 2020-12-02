@@ -15,6 +15,7 @@
     <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RPC APIs" href="RPC%20APIs.html" />
     <link rel="prev" title="Smart Contract" href="Smart%20Contract.html" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
@@ -30,6 +31,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="RPC%20APIs.html" title="RPC APIs"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="Smart%20Contract.html" title="Smart Contract"
              accesskey="P">previous</a> |</li>
@@ -84,54 +88,12 @@
     <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong># transferTrc10(String from, String to, int tokenId, long amount)</strong></p>
-<p>Transfers TRC10 Asset</p>
-<p><strong># freezeBalance(String from, long balance, long duration, int resourceCode)</strong></p>
-<p>Freeze balance to get energy or bandwidth, for 3 days.</p>
-<p>Parameters:resourceCode – Resource type, can be “ENERGY” or “BANDWIDTH”</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">TransactionReturn</span> <span class="nf">freezeBalance</span><span class="p">(</span><span class="n">String</span> <span class="n">from</span><span class="p">,</span> <span class="kt">long</span> <span class="n">balance</span><span class="p">,</span> <span class="kt">long</span> <span class="n">duration</span><span class="p">,</span> <span class="kt">int</span> <span class="n">resourceCode</span><span class="p">)</span> <span class="p">{</span>
-
-        <span class="n">ByteString</span> <span class="n">rawFrom</span> <span class="o">=</span> <span class="n">parseAddress</span><span class="p">(</span><span class="n">from</span><span class="p">);</span>
-        <span class="n">FreezeBalanceContract</span> <span class="n">freezeBalanceContract</span><span class="o">=</span>
-                <span class="n">FreezeBalanceContract</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
-                        <span class="p">.</span><span class="na">setOwnerAddress</span><span class="p">(</span><span class="n">rawFrom</span><span class="p">)</span>
-                        <span class="p">.</span><span class="na">setFrozenBalance</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span>
-                        <span class="p">.</span><span class="na">setFrozenDuration</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
-                        <span class="p">.</span><span class="na">setResourceValue</span><span class="p">(</span><span class="n">resourceCode</span><span class="p">)</span>
-                        <span class="p">.</span><span class="na">build</span><span class="p">();</span>
-        
-        <span class="n">TransactionExtention</span> <span class="n">txnExt</span> <span class="o">=</span> <span class="n">blockingStub</span><span class="p">.</span><span class="na">freezeBalance2</span><span class="p">(</span><span class="n">freezeBalanceContract</span><span class="p">);</span>
-
-        <span class="n">Transaction</span> <span class="n">signedTxn</span> <span class="o">=</span> <span class="n">signTransaction</span><span class="p">(</span><span class="n">txnExt</span><span class="p">);</span>
-
-        <span class="n">TransactionReturn</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">blockingStub</span><span class="p">.</span><span class="na">broadcastTransaction</span><span class="p">(</span><span class="n">signedTxn</span><span class="p">);</span>
-        
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-<p><strong># unfreezeBalance(String from, int resource)</strong></p>
-<p>Unfreeze balance to get TRX back.</p>
-<p>Parameters: resource – Resource type, can be “ENERGY” or “BANDWIDTH”</p>
-<p><strong># voteWitness(String owner, HashMap&lt;String, String&gt; witness)</strong>.</p>
-<p>Vote for witnesses</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">TransactionReturn</span> <span class="nf">voteWitness</span><span class="p">(</span><span class="n">String</span> <span class="n">owner</span><span class="p">,</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">witness</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ByteString</span> <span class="n">rawFrom</span> <span class="o">=</span> <span class="n">parseAddress</span><span class="p">(</span><span class="n">owner</span><span class="p">);</span>
-        <span class="n">VoteWitnessContract</span> <span class="n">voteWitnessContract</span> <span class="o">=</span> <span class="n">createVoteWitnessContract</span><span class="p">(</span><span class="n">rawFrom</span><span class="p">,</span> <span class="n">witness</span><span class="p">);</span>
-        <span class="n">TransactionExtention</span> <span class="n">txnExt</span> <span class="o">=</span> <span class="n">blockingStub</span><span class="p">.</span><span class="na">voteWitnessAccount2</span><span class="p">(</span><span class="n">voteWitnessContract</span><span class="p">);</span>
-
-        <span class="n">Transaction</span> <span class="n">signedTxn</span> <span class="o">=</span> <span class="n">signTransaction</span><span class="p">(</span><span class="n">txnExt</span><span class="p">);</span>
-
-        <span class="n">TransactionReturn</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">blockingStub</span><span class="p">.</span><span class="na">broadcastTransaction</span><span class="p">(</span><span class="n">signedTxn</span><span class="p">);</span>
-        
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="query-apis">
 <h4>Query APIs<a class="headerlink" href="#query-apis" title="Permalink to this headline">¶</a></h4>
 <p>The Tron wraps many query APIs and utility functions. You can query the chain using a instance.</p>
+<p><strong># getNowBlock()</strong></p>
+<p>Get the latest block</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">getNowBlock</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;============= getNowBlock =============&quot;</span><span class="p">);</span>
         <span class="n">TronClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TronClient</span><span class="p">.</span><span class="na">ofNile</span><span class="p">(</span><span class="s">&quot;3333333333333333333333333333333333333333333333333333333333333333&quot;</span><span class="p">);</span>
@@ -143,20 +105,6 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong># getBlockByNum(long blockNum)</strong></p>
-<p>Get block from block number.</p>
-<p><strong># getNodeInfo()</strong></p>
-<p>Get current API node’ info.</p>
-<p><strong># listNodes()</strong></p>
-<p>List all nodes that current API node is connected to.</p>
-<p><strong># getTransactionInfoByBlockNum(long blockNum)</strong></p>
-<p>Get transactionInfo from block number.</p>
-<p><strong># getTransactionInfoById(String txID)</strong></p>
-<p>Get transactionInfo from transaction id.</p>
-<p><strong># getAccount(String address)</strong></p>
-<p>Get account info by address.</p>
-<p><strong># listWitnesses()</strong></p>
-<p>List all witnesses that current API node is connected to.</p>
 </div>
 </div>
 <div class="section" id="smart-contract">
@@ -193,6 +141,9 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="Smart%20Contract.html"
                         title="previous chapter">Smart Contract</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="RPC%20APIs.html"
+                        title="next chapter">RPC APIs</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -220,6 +171,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="RPC%20APIs.html" title="RPC APIs"
+             >next</a> |</li>
         <li class="right" >
           <a href="Smart%20Contract.html" title="Smart Contract"
              >previous</a> |</li>

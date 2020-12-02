@@ -14,7 +14,7 @@ Welcome to Tronj's documentation!
    mddocs/Sending Transaction.md
    mddocs/Smart Contract.md
    mddocs/RPC API Client.md
-   mddocs/Fullnode RPC APIs.md
+   mddocs/RPC APIs.md
    mddocs/Contract.md
 
 

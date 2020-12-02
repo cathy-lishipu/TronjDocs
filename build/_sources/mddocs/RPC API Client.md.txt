@@ -23,7 +23,7 @@ The routine for sending refers to [Sending Transaction](https://github.com/Stars
 
 **# transfer(String from, String to, long amount)**
 
-  Transfer TRX. amount in SUN
+Transfer TRX. amount in SUN
 
 ```java
 public TransactionReturn transfer(String from, String to, long amount) {
@@ -46,63 +46,14 @@ public TransactionReturn transfer(String from, String to, long amount) {
         return ret;
     }
 ```
-**# transferTrc10(String from, String to, int tokenId, long amount)** 
 
-Transfers TRC10 Asset
-
-**# freezeBalance(String from, long balance, long duration, int resourceCode)**
-
-Freeze balance to get energy or bandwidth, for 3 days.  
-
-Parameters:resourceCode – Resource type, can be "ENERGY" or "BANDWIDTH"
-
-```java
-public TransactionReturn freezeBalance(String from, long balance, long duration, int resourceCode) {
-
-        ByteString rawFrom = parseAddress(from);
-        FreezeBalanceContract freezeBalanceContract=
-                FreezeBalanceContract.newBuilder()
-                        .setOwnerAddress(rawFrom)
-                        .setFrozenBalance(balance)
-                        .setFrozenDuration(duration)
-                        .setResourceValue(resourceCode)
-                        .build();
-        
-        TransactionExtention txnExt = blockingStub.freezeBalance2(freezeBalanceContract);
-
-        Transaction signedTxn = signTransaction(txnExt);
-
-        TransactionReturn ret = blockingStub.broadcastTransaction(signedTxn);
-        
-        return ret;
-    }
-```
-
-**# unfreezeBalance(String from, int resource)** 
-
-Unfreeze balance to get TRX back.  
-
-Parameters: resource – Resource type, can be "ENERGY" or "BANDWIDTH"
-
-**# voteWitness(String owner, HashMap<String, String> witness)**. 
-
-Vote for witnesses
-
-```java
-public TransactionReturn voteWitness(String owner, HashMap<String, String> witness) {
-        ByteString rawFrom = parseAddress(owner);
-        VoteWitnessContract voteWitnessContract = createVoteWitnessContract(rawFrom, witness);
-        TransactionExtention txnExt = blockingStub.voteWitnessAccount2(voteWitnessContract);
-
-        Transaction signedTxn = signTransaction(txnExt);
-
-        TransactionReturn ret = blockingStub.broadcastTransaction(signedTxn);
-        
-        return ret;
-    }
-```
 #### Query APIs
 The Tron wraps many query APIs and utility functions. You can query the chain using a instance.
+
+**# getNowBlock()**
+
+Get the latest block
+  
 ```java
 public void getNowBlock() {
         System.out.println("============= getNowBlock =============");
@@ -114,33 +65,6 @@ public void getNowBlock() {
         }
 }
 ```
-**# getBlockByNum(long blockNum)**  
-
-Get block from block number.  
-
-**# getNodeInfo()**
-
-Get current API node’ info.  
-
-**# listNodes()** 
-
-List all nodes that current API node is connected to.  
-
-**# getTransactionInfoByBlockNum(long blockNum)**
-
-Get transactionInfo from block number.  
-
-**# getTransactionInfoById(String txID)** 
-
-Get transactionInfo from transaction id.  
-
-**# getAccount(String address)** 
-
-Get account info by address. 
-
-**# listWitnesses()** 
-
-List all witnesses that current API node is connected to.
 
 ### Smart Contract
 
